@@ -21,6 +21,7 @@ async function run () {
         console.log('database connected successfully');
         const database = client.db('bookMyHoliday');
         const serviceCollection = database.collection('services');
+        const orderCollection = database.collection('orders');
 
 
         //GET services API
@@ -29,6 +30,13 @@ async function run () {
             const services = await cursor.toArray();
             res.send(services);
         })
+        //Add order API
+        app.post('/orders', async(req, res) =>{
+            const order = req.body;
+            console.log('order', order);
+            res.send('order processed');
+        })
+
     }
     finally{
         // await client.close();
