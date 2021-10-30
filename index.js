@@ -33,8 +33,8 @@ async function run () {
         //Add order API
         app.post('/orders', async(req, res) =>{
             const order = req.body;
-            console.log('order', order);
-            res.send('order processed');
+            const result = await orderCollection.insertOne(order);
+            res.json(result);
         })
 
     }
